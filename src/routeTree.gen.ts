@@ -16,9 +16,21 @@ import { Route as rootRoute } from './routes/__root'
 
 // Create Virtual Routes
 
+const MembersLazyImport = createFileRoute('/members')()
+const GroupsLazyImport = createFileRoute('/groups')()
 const IndexLazyImport = createFileRoute('/')()
 
 // Create/Update Routes
+
+const MembersLazyRoute = MembersLazyImport.update({
+  path: '/members',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/members.lazy').then((d) => d.Route))
+
+const GroupsLazyRoute = GroupsLazyImport.update({
+  path: '/groups',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/groups.lazy').then((d) => d.Route))
 
 const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
@@ -33,11 +45,23 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexLazyImport
       parentRoute: typeof rootRoute
     }
+    '/groups': {
+      preLoaderRoute: typeof GroupsLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/members': {
+      preLoaderRoute: typeof MembersLazyImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
 // Create and export the route tree
 
-export const routeTree = rootRoute.addChildren([IndexLazyRoute])
+export const routeTree = rootRoute.addChildren([
+  IndexLazyRoute,
+  GroupsLazyRoute,
+  MembersLazyRoute,
+])
 
 /* prettier-ignore-end */
