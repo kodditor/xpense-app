@@ -6,27 +6,27 @@ import '../bill-styling.css'
 
 const bills = [
   {
-    name: 'KFC           ',
+    name: 'Bill-1',
     cost: '500',
     status: 'active' 
   },
   {
-    name: 'Dine & Wine   ',
+    name: 'Bill-2',
     cost: '500',
     status: 'active' 
   },
   {
-    name: 'Shoprite      ',
+    name: 'Bill-3',
     cost: '500',
     status: 'active' 
   },
   {
-    name: 'Free The Youth',
-    cost: '1000',
+    name: 'Bill-4',
+    cost: '500',
     status: 'active' 
   },
   {
-    name: 'Airbnb        ',
+    name: 'Bill-5',
     cost: '500',
     status: 'active' 
   },
@@ -64,5 +64,5 @@ const List = () => {
 
 
 export const Route = createFileRoute('/bills')({
-  component: () => <List /> // Render the List component here
+  component: () => <List /> 
 });
