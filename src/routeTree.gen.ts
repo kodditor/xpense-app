@@ -13,6 +13,7 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as BillsImport } from './routes/bills'
 
 // Create Virtual Routes
 
@@ -32,6 +33,11 @@ const GroupsLazyRoute = GroupsLazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/groups.lazy').then((d) => d.Route))
 
+const BillsRoute = BillsImport.update({
+  path: '/bills',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
@@ -43,6 +49,10 @@ declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
     '/': {
       preLoaderRoute: typeof IndexLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/bills': {
+      preLoaderRoute: typeof BillsImport
       parentRoute: typeof rootRoute
     }
     '/groups': {
@@ -60,6 +70,7 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren([
   IndexLazyRoute,
+  BillsRoute,
   GroupsLazyRoute,
   MembersLazyRoute,
 ])
