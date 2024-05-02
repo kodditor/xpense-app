@@ -22,7 +22,7 @@ export const Route = createLazyFileRoute('/')({
 
 function Index() {
   const pathname = useRouterState().location.pathname;
-  const paths = ( pathname.split('/').length == 1 ) ? pathname.split('/') : ['Dashboard']
+  const paths = ( pathname == '/' ) ? ['Dashboard'] : pathname.split('/');
   const stats: StatProps[] = [
     {
       type: 'currency',

@@ -44,7 +44,6 @@ export default function SidebarComponent(){
             )
           })
         }
-        {pathname}
       </div>
     </>
   )

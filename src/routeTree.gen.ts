@@ -17,9 +17,21 @@ import { Route as BillsImport } from './routes/bills'
 
 // Create Virtual Routes
 
+const MembersLazyImport = createFileRoute('/members')()
+const GroupsLazyImport = createFileRoute('/groups')()
 const IndexLazyImport = createFileRoute('/')()
 
 // Create/Update Routes
+
+const MembersLazyRoute = MembersLazyImport.update({
+  path: '/members',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/members.lazy').then((d) => d.Route))
+
+const GroupsLazyRoute = GroupsLazyImport.update({
+  path: '/groups',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/groups.lazy').then((d) => d.Route))
 
 const BillsRoute = BillsImport.update({
   path: '/bills',
@@ -43,11 +55,24 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BillsImport
       parentRoute: typeof rootRoute
     }
+    '/groups': {
+      preLoaderRoute: typeof GroupsLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/members': {
+      preLoaderRoute: typeof MembersLazyImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
 // Create and export the route tree
 
-export const routeTree = rootRoute.addChildren([IndexLazyRoute, BillsRoute])
+export const routeTree = rootRoute.addChildren([
+  IndexLazyRoute,
+  BillsRoute,
+  GroupsLazyRoute,
+  MembersLazyRoute,
+])
 
 /* prettier-ignore-end */
