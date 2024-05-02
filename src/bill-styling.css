@@ -1,0 +1,56 @@
+.header {
+  display: flex;
+  margin: 2rem 0;
+  justify-content: space-between;
+ }
+ .header h2 {
+  
+  font-size: 20px;
+  font-weight: bold;
+}
+ .header select {
+   border-radius: 10px;
+   border: none;
+   padding: 8px 12px;
+   border: 1px solid #dde6ed;
+   color: white;
+   background-color: #00650a;
+ }
+ .bills-container {
+  display: flex;
+  padding: 10px;
+  background-color: #ace4a8;
+  flex-direction: column;
+  gap: 15px;
+  border-radius: 12px;
+ }
+ .list {
+   font-size: 20px;
+   font-weight: bold;
+   background-color: white;
+   border-radius: 12px;
+   display: flex;
+   padding: 15px;
+   align-content: center;
+   align-items: center;
+   justify-content: space-between;
+   transition: 0.3s ease-in-out;
+ }
+ .bills-detail {
+   display: flex;
+   align-items: center;
+   gap: 20px;
+   color: green;
+   
+ }
+ /* .select-options{
+  background-color: green;
+  color: white ;
+ } */
+ /* .list:hover {
+   background: #dde6ed;
+   border-radius: 10px;
+ } */
+
+
+ /*Hi KODE can you please use the same styling as the one you used for the recent bills*/
