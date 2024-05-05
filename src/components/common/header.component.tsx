@@ -77,7 +77,7 @@ export default function HeaderComponent(){
                       <div className="w-full col-span-2 mb-1" >
                         { 
                           values.items.length > 0 &&
-                          values.items.map((item, idx) => (
+                          values.items.map((_, idx) => (
                             <div className="flex items-center mb-2 last:mb-0 ">
                               <Button onClick={()=> { remove(idx)}} className="grid place-items-center !bg-secondary !text-primary border-0 mt-4 mr-3 !p-0 text-secondary h-8 aspect-square !rounded-full">
                                   <XMarkIcon className="w-4" />
