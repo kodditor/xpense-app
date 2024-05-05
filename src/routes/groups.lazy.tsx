@@ -70,7 +70,7 @@ function Groups(){
 
 const groups = [
   {
-    id: 'g001',
+    id: 1,
     title: 'Old boys',
     members: [
       '0001',
@@ -80,7 +80,7 @@ const groups = [
     ]
   },
   {
-    id: 'g002',
+    id: 2,
     title: 'New political party',
     members: [
       '0001',
